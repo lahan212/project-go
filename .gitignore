@@ -1,0 +1,36 @@
+# Ignore compiled binaries
+*.exe
+*.dll
+*.out
+
+# Ignore go build artifacts
+*.o
+*.a
+
+# Ignore the vendor directory
+/vendor/
+
+# Ignore any file or directory created by the go test tool
+*.test
+*.prof
+
+# Ignore VS Code configuration files
+.vscode/
+
+# Ignore Go module cache
+/go.sum
+/go.mod
+
+# Ignore any file or directory created by an editor or IDE
+.idea/
+*.iml
+
+# Ignore binary files
+*.bin
+
+# Ignore log files
+*.log
+
+# Ignore Node.js-related files and directories
+node_modules/
+package-lock.json
