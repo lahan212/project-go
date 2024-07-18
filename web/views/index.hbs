@@ -1,98 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="/static/output.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/static/output.css?{{ time }}">
 </head>
+
 <body>
-    <dialog id="my_modal_3" class="modal">
-  <div class="modal-box">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click on ✕ button to close</p>
-  </div>
-</dialog>
-<div class="navbar bg-base-100">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+  <dialog id="my_modal_3" class="modal">
+    <div class="modal-box">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+      <h3 class="font-bold text-lg">Hello!</h3>
+      <p class="py-4">Press ESC key or click on ✕ button to close</p>
+    </div>
+  </dialog>
+  <div class="navbar bg-base-100">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+          </svg>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          {{#if user}}
+          <li><a href="/dashboard">Dashboard</a></li>
+          {{else}}
+          <li><a href="/auth">Login</a></li>
+          {{/if}}
+          <li><a>Homepage</a></li>
+          <li><a>Portfolio</a></li>
+          <li><a onclick="my_modal_3.showModal()" href="#">About</a></li>
+        </ul>
       </div>
-      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a>Homepage</a></li>
-        <li><a>Portfolio</a></li>
-        <li><a onclick="my_modal_3.showModal()" href="#">About</a></li>
-      </ul>
+    </div>
+    <div class="navbar-center">
+      <a class="btn btn-ghost text-xl">daisyUI</a>
+    </div>
+    <div class="navbar-end">
+      <button class="btn btn-ghost btn-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </button>
+      <button class="btn btn-ghost btn-circle">
+        <div class="indicator">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          <span class="badge badge-xs badge-primary indicator-item"></span>
+        </div>
+      </button>
     </div>
   </div>
-  <div class="navbar-center">
-    <a class="btn btn-ghost text-xl">daisyUI</a>
+
+<div class="carousel w-full">
+  <div id="slide1" class="carousel-item relative w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
+      class="w-full" />
+    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+      <a href="#slide4" class="btn btn-circle">❮</a>
+      <a href="#slide2" class="btn btn-circle">❯</a>
+    </div>
   </div>
-  <div class="navbar-end">
-    <button class="btn btn-ghost btn-circle">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-    </button>
-    <button class="btn btn-ghost btn-circle">
-      <div class="indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-        <span class="badge badge-xs badge-primary indicator-item"></span>
-      </div>
-    </button>
+  <div id="slide2" class="carousel-item relative w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
+      class="w-full" />
+    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+      <a href="#slide1" class="btn btn-circle">❮</a>
+      <a href="#slide3" class="btn btn-circle">❯</a>
+    </div>
+  </div>
+  <div id="slide3" class="carousel-item relative w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg"
+      class="w-full" />
+    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+      <a href="#slide2" class="btn btn-circle">❮</a>
+      <a href="#slide4" class="btn btn-circle">❯</a>
+    </div>
+  </div>
+  <div id="slide4" class="carousel-item relative w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
+      class="w-full" />
+    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+      <a href="#slide3" class="btn btn-circle">❮</a>
+      <a href="#slide1" class="btn btn-circle">❯</a>
+    </div>
   </div>
 </div>
-
- <form hx-post="/submit" hx-target="#result">
-        <label for="inputData">Enter data:</label>
-        <input type="text" id="inputData" name="data" required>
-        <button type="submit">Submit</button>
+  <ul class="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+    <li><a>Item 3</a></li>
+  </ul>
+  <button class="btn">Button</button>
+  <button class="btn">Button</button>
+  <footer class="footer p-10 bg-base-200 text-base-content">
+    <nav>
+      <h6 class="footer-title">Services</h6>
+      <a class="link link-hover">Branding</a>
+      <a class="link link-hover">Design</a>
+      <a class="link link-hover">Marketing</a>
+      <a class="link link-hover">Advertisement</a>
+    </nav>
+    <nav>
+      <h6 class="footer-title">Company</h6>
+      <a class="link link-hover">About us</a>
+      <a class="link link-hover">Contact</a>
+      <a class="link link-hover">Jobs</a>
+      <a class="link link-hover">Press kit</a>
+    </nav>
+    <nav>
+      <h6 class="footer-title">Legal</h6>
+      <a class="link link-hover">Terms of use</a>
+      <a class="link link-hover">Privacy policy</a>
+      <a class="link link-hover">Cookie policy</a>
+    </nav>
+    <form>
+      <h6 class="footer-title">Newsletter</h6>
+      <fieldset class="form-control w-80">
+        <label class="label">
+          <span class="label-text">Enter your email address</span>
+        </label>
+        <div class="join">
+          <input type="text" placeholder="username@site.com" class="input input-bordered join-item" />
+          <button class="btn btn-primary join-item">Subscribe</button>
+        </div>
+      </fieldset>
     </form>
-    <ul class="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
-  <li><a>Item 1</a></li>
-  <li><a>Item 2</a></li>
-  <li><a>Item 3</a></li>
-</ul>
-<button class="btn">Button</button>
-<button class="btn">Button</button>
-<footer class="footer p-10 bg-base-200 text-base-content">
-  <nav>
-    <h6 class="footer-title">Services</h6> 
-    <a class="link link-hover">Branding</a>
-    <a class="link link-hover">Design</a>
-    <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a>
-  </nav> 
-  <nav>
-    <h6 class="footer-title">Company</h6> 
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
-  </nav> 
-  <nav>
-    <h6 class="footer-title">Legal</h6> 
-    <a class="link link-hover">Terms of use</a>
-    <a class="link link-hover">Privacy policy</a>
-    <a class="link link-hover">Cookie policy</a>
-  </nav> 
-  <form>
-    <h6 class="footer-title">Newsletter</h6> 
-    <fieldset class="form-control w-80">
-      <label class="label">
-        <span class="label-text">Enter your email address</span>
-      </label> 
-      <div class="join">
-        <input type="text" placeholder="username@site.com" class="input input-bordered join-item" /> 
-        <button class="btn btn-primary join-item">Subscribe</button>
-      </div>
-    </fieldset>
-  </form>
-</footer>
-    <div id="result"></div>
-<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  </footer>
+  <div id="result"></div>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </body>
+
 </html>

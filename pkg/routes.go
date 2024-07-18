@@ -1,17 +1,15 @@
 package pkg
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 )
 
 // SetupRoutes initializes routes for the application
 func SetupRoutes(app *fiber.App) {
-	app.Get("/", func(c *fiber.Ctx) error {
-		// Render index
-		return c.Render("views/index", fiber.Map{
-			"Title": "Hello, World!",
-		})
-	})
+	app.Get("/", HomePageHandler)
+	app.Get("/auth", AuthPageHandler)
 	// Public routes
 	app.Post("/login", LoginHandler)
 	app.Post("/register", RegisterHandler)
@@ -46,6 +44,36 @@ func UserDashboardHandler(c *fiber.Ctx) error {
 	// Render the HTML template with user data
 	return c.Render("views/home/home-user", fiber.Map{
 		"user":    userData,
+		"message": "Welcome to the admin panel",
+	})
+}
+
+func AuthPageHandler(c *fiber.Ctx) error {
+	userData, err := c.Locals("userData").(fiber.Map)
+	currentTime := time.Now()
+	if !err {
+		// Handle the case where userData is not present or not of the expected type
+		userData = nil
+	}
+	// Render the HTML template with user data
+	return c.Render("views/auth/login", fiber.Map{
+		"user":    userData,
+		"time":    currentTime,
+		"message": "Welcome to the admin panel",
+	})
+}
+
+func HomePageHandler(c *fiber.Ctx) error {
+	userData, err := c.Locals("userData").(fiber.Map)
+	currentTime := time.Now()
+	if !err {
+		// Handle the case where userData is not present or not of the expected type
+		userData = nil
+	}
+	// Render the HTML template with user data
+	return c.Render("views/index", fiber.Map{
+		"user":    userData,
+		"time":    currentTime,
 		"message": "Welcome to the admin panel",
 	})
 }

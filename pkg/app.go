@@ -171,7 +171,9 @@ func UserHandler(c *fiber.Ctx) error {
 	// Expecting Bearer token, so check the format
 	if !strings.HasPrefix(authHeader, "Bearer ") {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"error": "Invalid Bearer token format",
+			"status":  "error",
+			"code":    fiber.StatusUnauthorized,
+			"message": "Invalid Bearer token format",
 		})
 	}
 
@@ -191,7 +193,9 @@ func UserHandler(c *fiber.Ctx) error {
 	user, err := DecodeToken(tokenString)
 	if err != nil {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"error": "Invalid or expired token",
+			"status":  "error",
+			"code":    fiber.StatusUnauthorized,
+			"message": "Invalid or expired token",
 		})
 	}
 
